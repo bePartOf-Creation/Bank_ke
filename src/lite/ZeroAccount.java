@@ -4,13 +4,17 @@ import java.time.LocalDateTime;
 
 public class ZeroAccount extends Account {
     private final double balance;
-    private final double interestRate;
+    private final double annualInterestRate;
     private final LocalDateTime accountOpeningDate;
+    private final double minimumBalance;
+    private double monthlyInterest;
 
     public ZeroAccount(double newBalance) {
         this.balance = newBalance;
-        this.interestRate = 0.02;
+        this.annualInterestRate = 0.02;
         this.accountOpeningDate = LocalDateTime.now();
+        this.minimumBalance = 100.0;
+        this.monthlyInterest = getMonthlyInterestRate();
     }
 
     @Override
@@ -19,8 +23,24 @@ public class ZeroAccount extends Account {
     }
 
     @Override
-    public double getInterestRate() {
-        return interestRate;
+    public double getMinimumBalance() {
+        return minimumBalance;
+    }
+
+    @Override
+    public double getMonthlyInterestRate() {
+        monthlyInterest = annualInterestRate /12;
+        return monthlyInterest;
+    }
+
+    @Override
+    public void deposit(double amount) {
+
+    }
+
+    @Override
+    public double getAnnualInterestRate() {
+        return annualInterestRate;
     }
 
     @Override

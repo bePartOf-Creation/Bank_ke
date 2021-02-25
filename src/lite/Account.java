@@ -13,9 +13,15 @@ public abstract class Account {
 
     public abstract double getBalance();
 
-    public abstract double getInterestRate();
+    public abstract double getAnnualInterestRate();
 
     public abstract LocalDateTime getAccountOpeningDate();
+
+    public abstract double getMinimumBalance();
+
+    public abstract double getMonthlyInterestRate();
+
+    public abstract void deposit(double amount);
 }
 
    
