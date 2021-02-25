@@ -132,12 +132,24 @@ class AccountTest {
     void testThat_zeroAccountCanGenerateMonthlyInterestRate(){
         newAccount = new ZeroAccount(0.0);
         double zeroMonthly = zeroAccount.getMonthlyInterestRate();
-        assertEquals(0.004166666666666667,zeroMonthly);
+        assertEquals(0.0016666666666666668,zeroMonthly);
     }
     @Test
-    void test_That_savingsAccountCanDepositValue(){
+    void test_That_savingsAccountCanDepositFunction(){
         newAccount = new SavingsAccount(0.0);
         savingsAccount.deposit(3000.0);
         assertEquals(3500.0,savingsAccount.getBalance());
+    }
+    @Test
+    void test_That_currentAccountCanDepositFunction(){
+        newAccount = new CurrentAccount(0.0);
+        currentAccount.deposit(3000.0);
+        assertEquals(4000.0,currentAccount.getBalance());
+    }
+    @Test
+    void test_That_ZeroAccountCanDepositFunction(){
+        newAccount = new ZeroAccount(0.0);
+        zeroAccount.deposit(3000.0);
+        assertEquals(3100.0,zeroAccount.getBalance());
     }
 }

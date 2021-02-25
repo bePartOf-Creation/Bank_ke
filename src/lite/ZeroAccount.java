@@ -3,7 +3,7 @@ package lite;
 import java.time.LocalDateTime;
 
 public class ZeroAccount extends Account {
-    private final double balance;
+    private double balance;
     private final double annualInterestRate;
     private final LocalDateTime accountOpeningDate;
     private final double minimumBalance;
@@ -35,7 +35,7 @@ public class ZeroAccount extends Account {
 
     @Override
     public void deposit(double amount) {
-
+        this.balance = (getBalance() +amount) + getMinimumBalance();
     }
 
     @Override
