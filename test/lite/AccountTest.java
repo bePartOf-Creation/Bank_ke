@@ -16,6 +16,7 @@ class AccountTest {
     LocalDateTime localDateTime;
     Account newAccount;
 
+
     @BeforeEach
     void setUp() {
         currentAccount = new CurrentAccount(0.0);
@@ -152,4 +153,44 @@ class AccountTest {
         zeroAccount.deposit(3000.0);
         assertEquals(3100.0,zeroAccount.getBalance());
     }
+    @Test
+    void test_That_savingsAccountCanHaveWithdrawal(){
+        newAccount = new SavingsAccount(0.0);
+        savingsAccount.deposit(2000);
+        savingsAccount.withdrawal(2500.0);
+        assertEquals(500.0,savingsAccount.getBalance());
+    }
+    @Test
+    void test_That_currentAccountCanHaveWithdrawal(){
+        newAccount = new CurrentAccount(0.0);
+        currentAccount.deposit(7000.0);
+        currentAccount.withdrawal(7000.0);
+        assertEquals(0.0,currentAccount.getBalance());
+    }
+
+    @Test
+    void test_That_SavingsAccountCanHaveTheirKindOfNubanNUmber(){
+        zeroAccount = new ZeroAccount(0.0);
+        String zeroNuban = zeroAccount.generateNubanNumber();
+        System.out.println(zeroAccount.getZeroNubanNumber());
+        assertNotNull(zeroNuban);
+        assertNotNull(zeroAccount.getZeroNubanNumber());
+    }
+    @Test
+    void test_That_CanGetSavingsAccountCanHaveNubanNUmber(){
+        savingsAccount = new SavingsAccount(0.0);
+        String savingsNuban = savingsAccount.generateNubanNumber();
+        System.out.println(savingsAccount.getSavingsNubanNumber());
+        assertNotNull(savingsNuban);
+        assertNotNull(savingsAccount.getSavingsNubanNumber());
+    }
+    @Test
+    void test_That_CurrentAccountCanHaveTheirAccountNumber(){
+        currentAccount = new CurrentAccount(0.0);
+        String currentNuban = currentAccount.generateNubanNumber();
+        System.out.println(currentAccount.getCurrentNubanNumber());
+        assertNotNull(currentNuban);
+        assertNotNull(currentAccount.getCurrentNubanNumber());
+    }
+
 }
