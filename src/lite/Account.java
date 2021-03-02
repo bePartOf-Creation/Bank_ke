@@ -8,8 +8,6 @@ public abstract class Account {
     private double balance;
     private LocalDateTime accountOpeningDate;
 
-
-
     StringBuilder stringBuilder;
     Random random = new Random();
 

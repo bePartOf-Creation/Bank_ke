@@ -81,7 +81,7 @@ public class CurrentAccount extends Account{
     }
 
 
-    public Object getCurrentNubanNumber() {
+    public String getCurrentNubanNumber() {
         return  nubanNumber;
     }
 }
