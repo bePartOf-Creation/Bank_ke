@@ -2,19 +2,25 @@ package lite;
 
 import java.util.Random;
 
-public abstract class Transactions {
+public class DebitTransactions extends Transactions {
+    private final String transactionId;
+
+
     StringBuilder stringBuilder;
     Random random = new Random();
 
+    public DebitTransactions() {
+        this.transactionId = generateTransactionId();
+    }
 
-
+    @Override
     public String generateTransactionId() {
-       stringBuilder = new StringBuilder();
+       stringBuilder = new StringBuilder("DE");
        int number1 = random.nextInt(10);
        int number2 = random.nextInt(10);
        stringBuilder.append(number1).append(number2).append(" ");
-       int count = 0;
-       for(int i = 0;i < 14;i++){
+       int count= 0;
+       for(int i = 0; i < 14;i++){
            if(count == 4){
                stringBuilder.append(" ");
                count = 0;
@@ -24,6 +30,10 @@ public abstract class Transactions {
                count++;
            }
        }
-       return String.valueOf(stringBuilder);
+        return String.valueOf(stringBuilder);
+    }
+
+    public String getDebitTransactionId() {
+        return transactionId;
     }
 }

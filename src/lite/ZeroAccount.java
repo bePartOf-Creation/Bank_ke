@@ -66,8 +66,9 @@ public class ZeroAccount extends Account {
             }else{
                 int number3 = random.nextInt(10);
                 stringBuilder.append(number3);
-                count++;
+
             }
+            count++;
         }
         return String.valueOf(stringBuilder);
     }

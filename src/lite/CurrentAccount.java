@@ -9,7 +9,7 @@ public class CurrentAccount extends Account{
     private final LocalDateTime accountOpeningDate;
     private final double minimumBalance;
     private double monthlyInterestRate;
-    private String nubanNumber;
+    private final String nubanNumber;
     StringBuilder stringBuilder;
     Random random = new Random();
 
@@ -22,9 +22,6 @@ public class CurrentAccount extends Account{
         this.monthlyInterestRate = getMonthlyInterestRate();
         this.nubanNumber = generateNubanNumber();
     }
-
-
-
     @Override
     public double getBalance() {
         return  balance;

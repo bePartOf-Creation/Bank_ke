@@ -15,6 +15,9 @@ class AccountTest {
     CurrentAccount currentAccount;
     LocalDateTime localDateTime;
     Account newAccount;
+    Transactions transactions;
+    DebitTransactions debitTransactions;
+    CreditTransactions creditTransactions;
 
 
     @BeforeEach
@@ -107,13 +110,13 @@ class AccountTest {
     }
     @Test
     void testThat_zeroAccountCanHaveItsOwnMinimumBalance() {
-        newAccount = new SavingsAccount(0.0);
+        newAccount = new ZeroAccount(0.0);
         double minBalance = zeroAccount.getMinimumBalance();
         assertEquals(100.0, minBalance);
     }
     @Test
     void testThat_currentAccountCanHaveItsOwnMinimumBalance() {
-        newAccount = new SavingsAccount(0.0);
+        newAccount = new CurrentAccount(0.0);
         double minBalance = currentAccount.getMinimumBalance();
         assertEquals(1000.0, minBalance);
     }
@@ -169,7 +172,7 @@ class AccountTest {
     }
 
     @Test
-    void test_That_SavingsAccountCanHaveTheirKindOfNubanNUmber(){
+    void test_That_ZeroAccountCanHaveTheirKindOfNubanNUmber(){
         zeroAccount = new ZeroAccount(0.0);
         String zeroNuban = zeroAccount.generateNubanNumber();
         System.out.println(zeroAccount.getZeroNubanNumber());
@@ -192,5 +195,20 @@ class AccountTest {
         assertNotNull(currentNuban);
         assertNotNull(currentAccount.getCurrentNubanNumber());
     }
+@Test
+    void test_That_AllAccountHaveDebitTransactionIds(){
+        debitTransactions= new DebitTransactions();
+        String transactId = debitTransactions.generateTransactionId();
+        System.out.println(transactId);
+        assertNotNull(transactId);
+        assertNotNull(debitTransactions.getDebitTransactionId());
+    }
+@Test
+    void test_That_AllAccountHaveCreditTransactionsIds(){
+        creditTransactions = new CreditTransactions();
+        String transactId = creditTransactions.generateTransactionId();
+        assertNotNull(transactId);
+        assertNotNull(creditTransactions.getCreditTransactions());
+}
 
 }
