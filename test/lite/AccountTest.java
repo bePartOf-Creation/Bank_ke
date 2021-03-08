@@ -15,9 +15,13 @@ class AccountTest {
     CurrentAccount currentAccount;
     LocalDateTime localDateTime;
     Account newAccount;
-    Transactions transactions;
-    DebitTransactions debitTransactions;
-    CreditTransactions creditTransactions;
+    Transaction transaction;
+
+    TransactionType transactionType;
+    DebitTransaction debitTransactions;
+    CreditTransaction creditTransactions;
+    TransferTransaction transferTransaction;
+    FeeDetails feeDetails;
 
 
     @BeforeEach
@@ -197,7 +201,7 @@ class AccountTest {
     }
 @Test
     void test_That_AllAccountHaveDebitTransactionIds(){
-        debitTransactions= new DebitTransactions();
+        debitTransactions= new DebitTransaction();
         String transactId = debitTransactions.generateTransactionId();
         System.out.println(transactId);
         assertNotNull(transactId);
@@ -205,10 +209,47 @@ class AccountTest {
     }
 @Test
     void test_That_AllAccountHaveCreditTransactionsIds(){
-        creditTransactions = new CreditTransactions();
+        creditTransactions = new CreditTransaction();
         String transactId = creditTransactions.generateTransactionId();
         assertNotNull(transactId);
         assertNotNull(creditTransactions.getCreditTransactions());
 }
+@Test
+    void test_That_AllTransactionFeesHasFeeAmount(){
+        feeDetails = new FeeDetails();
+        int feeAmount = feeDetails.getFeeAmount();
+        assertEquals(42,feeAmount);
+}
+@Test
+    void test_That_AllTransactionFeeHasFeeType(){
+        feeDetails = new FeeDetails();
+        String feeType = feeDetails.getFeeType();
+        assertEquals("Bank_keh Fee", feeType);
+}
+@Test
+    void test_That_AllTransactionFeeHasFeeDescription(){
+        feeDetails = new FeeDetails();
+        String feeDescription = feeDetails.getFeeDescription();
+        assertEquals("Bank_keh Processing Fees", feeDescription);
+    }
+@Test
+    void test_ThatAll_CreditTransactionHasATransactionTypeDirectDebitHasDefault() {
+    creditTransactions = new CreditTransaction();
+    creditTransactions.setTransactionType(TransactionType.CREDIT);
+    TransactionType actual = creditTransactions.getTransactionType();
+    assertEquals(TransactionType.CREDIT, actual);
+}
+@Test
+    void test_ThatAll_CreditTransactionHasATransactionTypeTransfer(){
+     transferTransaction = new TransferTransaction();
+     transferTransaction .setTransactionType(TransactionType.TRANSFER);
+     assertEquals(TransactionType.TRANSFER, transferTransaction.getTransactionType());
+    }
+@Test
+    void test_ThatAll_DebitTransactionHasATransactionTypeDirectDebitHasDefault(){
+    debitTransactions= new DebitTransaction();
+    debitTransactions.setTransactionType(TransactionType.DEBIT);
+    assertEquals(TransactionType.DEBIT, debitTransactions.getTransactionType());
+    }
 
 }

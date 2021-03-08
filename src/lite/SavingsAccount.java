@@ -1,19 +1,20 @@
 package lite;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class SavingsAccount extends Account {
     private double balance;
     private final double annualInterestRate;
     private final LocalDateTime accountOpeningDate;
-    private final double minimumBalance;
+    private final int minimumBalance;
     private double monthlyInterest;
     private final String nubanNumber;
 
-    public SavingsAccount(double newBalance) {
-        this.balance = newBalance + getMinimumBalance();
+    public SavingsAccount(double newBalance /*Transaction transaction*/) {
+        this.balance = newBalance + (getMinimumBalance());
         this.annualInterestRate = 0.04;
-        this.minimumBalance = 500.0;
+        this.minimumBalance = 500;
         this.accountOpeningDate = LocalDateTime.now();
         this.monthlyInterest = getMonthlyInterestRate();
         this.nubanNumber = generateNubanNumber();
@@ -39,6 +40,8 @@ public class SavingsAccount extends Account {
         monthlyInterest = getAnnualInterestRate() / 12;
         return monthlyInterest;
     }
+
+
     @Override
     public void deposit(double amount) {
         this.balance = (getBalance() + amount) + getMinimumBalance();
@@ -53,6 +56,12 @@ public class SavingsAccount extends Account {
             this.balance = ((getBalance()- withdrawalAmount) - getMinimumBalance());
         }
     }
+
+//    public void withdraw(DebitTransaction transaction, Account account){
+//        balance = balance + (transaction.getDebitamount());
+//        account.deposit(transaction.getDebitamount());
+//        balance = balance.subtract(BigDecimal.valueOf(1000000));
+//    }
 
     @Override
     public String generateNubanNumber() {

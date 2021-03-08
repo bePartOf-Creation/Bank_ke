@@ -1,5 +1,6 @@
 package lite;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -76,8 +77,6 @@ public class CurrentAccount extends Account{
         }
         return String.valueOf(stringBuilder);
     }
-
-
     public String getCurrentNubanNumber() {
         return  nubanNumber;
     }
